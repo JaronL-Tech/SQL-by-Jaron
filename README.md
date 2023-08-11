@@ -1,1 +1,1 @@
-# SQL-by-Jaron
+The most important part of creating a successful airbnd is about location location. Having your air bnd in a location that attracts alot of tourism is huge for repeated customers. Pricing is also a big thing having cheap but completive prices will draw alot of customers. Finally a positive and upbeat attude will keep people coming.
