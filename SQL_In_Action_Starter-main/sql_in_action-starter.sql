@@ -16,7 +16,7 @@ SELECT COUNT(*) FROM final_airbnd
 -- HINT: "Where" could it be?
 
 -- EXPECTED OUTPUT: Patricia
-Select name FROM final_airbnb WHERE host_id = 63613;
+SELECT host_name FROM final_airbnb WHERE host_id = 63613;
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 3 >>>>>>>>>>>>>>>>>>>>>>>
 -- Query the data to just show the unique neighbourhoods listed
@@ -34,10 +34,7 @@ SELECT DISTINCT neighborhood FROM final_airbnd;
 -- FOOD FOR THOUGHT: Think about the results. Are the high and low prices outliers in this data set?
 
 -- EXPECTED OUTPUT: Highest = 785, Lowest = 55
-SELECT max(Price) FROM final_airbnb;
-
-
-Select MIN(Price) FROM final_airbnb;
+SELECT * FROM final_airbnb WHERE price = (SELECT MAX(price) FROM final_airbnb) OR price = (SELECT Min(price) FROM final_airbnb);
 
 
 
@@ -56,7 +53,7 @@ SELECT AVG(availability_365) FROM Final_airbnb;
 
 -- EXPECTED OUTPUT: 6 rows
 SELECT * FROM final_airbnb
-WHERE review = '';
+WHERE number_of_reviews = 0;
 
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 7 >>>>>>>>>>>>>>>>>>>>>>>
@@ -66,14 +63,14 @@ WHERE review = '';
 -- EXPECTED OUTPUT: 58059
 SELECT id FROM Final_airbnb
 WHERE room_type = 'Private room'
-ORDER BY reviews;
+ORDER BY reviews DESC LIMIT 1;
 
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 8 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find the most popular neighbourhood for listings 
 -- HINT: Look for which neighbourhood appears most frequently in the neighbourhood column
 -- HINT: You are creating "summary rows" for each neighbourhood, so you will just see one entry for each neighbourhood
-
+SELECT id from final_airbnb WHERE neighbourhood ORDER by avaliabilty;
 -- EXPECTED OUTPUT: Williamsburg
 -- INVESTIGATE: Should Williamsburg be crowned the most popular neighbourhood?
 
@@ -85,7 +82,7 @@ ORDER BY reviews;
 SELECT id
 FROM final_airbnd
 WHERE minimum_nights < 7
-ORDER BY reviews_per_month;
+ORDER BY reviews_per_month DESC LIMIT 1;
 
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 10 >>>>>>>>>>>>>>>>>>>>>>>
@@ -95,7 +92,7 @@ ORDER BY reviews_per_month;
 -- HINT: Work this one step at a time. See if you can find a way to just display the count of listings per host first.
 
 -- EXPECTED OUTPUT: The Box House Hotel with 6 listings
-
+Select host_id from final_airbnb order by listing_
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 11 >>>>>>>>>>>>>>>>>>>>>>>
 -- <<<<<<<<<<<<<<<<<<<<<<< WRAP UP >>>>>>>>>>>>>>>>>>>>>>>>>
